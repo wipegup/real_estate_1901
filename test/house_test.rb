@@ -42,6 +42,33 @@ class HouseTest < MiniTest::Test
   end
 
   def test_it_has_rooms_from_category
-    skip
+    room_1 = Room.new(:bedroom, 10,13)
+    room_2 = Room.new(:bedroom, 11,15)
+    room_3 = Room.new(:bathroom, 6,10)
+    room_4 = Room.new(:living_room, 25,15)
+    room_5 = Room.new(:basement, 30,41)
+    room_list = [room_1,room_2,room_3,room_4,room_5]
+
+    room_list.each { |room| @house.add_room(room)}
+
+    assert_equal [room_1, room_2], @house.rooms_from_category(:bedroom)
+    assert_equal [room_3], @house.rooms_from_category(:bathroom)
+    assert_equal [room_4], @house.rooms_from_category(:living_room)
+
+  end
+
+  def test_it_has_area
+    room_1 = Room.new(:bedroom, 10,13)
+    room_2 = Room.new(:bedroom, 11,15)
+    room_3 = Room.new(:bathroom, 6,10)
+    room_4 = Room.new(:living_room, 25,15)
+    room_5 = Room.new(:basement, 30,41)
+    room_list = [room_1,room_2,room_3,room_4,room_5]
+
+    room_list.each { |room| @house.add_room(room)}
+
+    true_area = room_list.map{|room| room.area}.sum
+
+    assert_equal true_area, @house.area
   end
 end
