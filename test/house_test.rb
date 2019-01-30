@@ -123,10 +123,10 @@ class HouseTest < MiniTest::Test
       if !room_by_cat.keys.include?(room.category)
         room_by_cat[room.category] = [room]
       else
-        room_by_cat << room
+        room_by_cat[room.category] << room
       end
     }
-
+    puts room_by_cat.keys
     room_by_cat.keys.each{ |category|
       assert_equal room_by_cat[category], @house.rooms_by_category[category]
     }
