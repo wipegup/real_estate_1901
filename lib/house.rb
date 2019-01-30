@@ -21,4 +21,24 @@ class House
   def area
     return @rooms.map{|room| room.area}.sum
   end
+
+  def price_per_square_foot
+    return area.to_f / @price
+  end
+
+  def room_sorted_by_area
+    return @rooms.sort_by{ |room| room.area}
+  end
+
+  def room_by_category
+    rooms_by_category = {}
+
+    @rooms.each{ |room|
+      if !rooms_by_category.keys.include(room.category)
+        rooms_by_category[room.category] = [room]
+      else
+        rooms_by_category[room.category] << room
+      end
+    }
+  end
 end
