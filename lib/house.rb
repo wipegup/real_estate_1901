@@ -13,4 +13,12 @@ class House
   def add_room(room)
     @rooms << room
   end
+
+  def rooms_from_category(category)
+    return @rooms.find_all{ |room| room.category == category}
+  end
+
+  def area
+    return @rooms.map{|room| room.area}.sum
+  end
 end
