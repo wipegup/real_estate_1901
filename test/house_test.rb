@@ -8,8 +8,8 @@ class HouseTest < MiniTest::Test
   end
 
   def test_it_starts_empty_rooms
-    house2 = House.new("$1","address")
-    assert_equal [], house2.rooms
+
+    assert_equal [], @house.rooms
   end
 
   def test_it_has_address
@@ -25,18 +25,23 @@ class HouseTest < MiniTest::Test
     room_1 = Room.new(:bedroom, 10,13)
     room_2 = Room.new(:bedroom, 11,15)
     room_3 = Room.new(:bathroom, 6,10)
-    room_list = [room_1,room_2,room_3]
+    room_4 = Room.new(:living_room, 25,15)
+    room_5 = Room.new(:basement, 30,41)
+    room_list = [room_1,room_2,room_3,room_4,room_5]
 
-    @house.add_room(room_1)
-    @house.add_room(room_2)
-    @house.add_room(room_3)
+    room_list.each { |room| @house.add_room(room)}
 
-    assert_equal 3, @house.rooms.length
+
+    assert_equal room_list.length, @house.rooms.length
 
     @house.rooms.zip(room_list).each do |house_room, added_room|
       assert_equal added_room, house_room
     end
 
 
+  end
+
+  def test_it_has_rooms_from_category
+    skip
   end
 end
