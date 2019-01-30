@@ -1,4 +1,4 @@
-require 'minitest/autotest'
+require 'minitest/autorun'
 require './lib/room'
 
 class RoomTest < MiniTest::Test
